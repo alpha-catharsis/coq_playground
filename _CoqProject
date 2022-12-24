@@ -1,3 +1,5 @@
 -Q . STM
 src/Stm.v
-src/FStep.v
+src/Step.v
+src/Seq.v
+src/Path.v
