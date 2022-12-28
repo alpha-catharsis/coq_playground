@@ -5,12 +5,12 @@ From Coq Require Import Program.Equality.
 Definition Trans S E := S -> E -> S -> Prop.
 
 (* State machine class *)
-Class Stm {S} {E} (trans : Trans S E) :=
+Class Stm {S E} (trans : Trans S E) :=
   { trans_funct (s1 : S) (e : E) (s2 : S) (s2' : S)
     : trans s1 e s2 -> trans s1 e s2' -> s2 = s2' }.
 
 (* Decidable state machine class *)
-Class DecStm {S} {E} (trans : Trans S E) `{Stm S E trans} :=
+Class DecStm {S E} (trans : Trans S E) `{Stm S E trans} :=
   { dec_trans (s1 : S) (e : E) (s2 : S) : decidable (trans s1 e s2) }.
 
 (* Functional transition tactic *)
@@ -25,18 +25,8 @@ Ltac decide_transition s1 e s2:=
   destruct s1, e, s2;
   repeat ((left; constructor) + (right; intros H; inversion H)).
 
+From STM Require Import Sem.
 Section Example.
-
-  Inductive Sem : Set :=
-  | Green
-  | Yellow
-  | Red
-  | Black.
-
-  Inductive Ev : Set :=
-  | Stop
-  | Next
-  | Fail.
 
   Inductive SemTrans : Trans Sem Ev :=
   | green_stop : SemTrans Green Stop Green

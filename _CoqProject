@@ -1,5 +1,7 @@
 -Q . STM
+src/Sem.v
+src/Enumerable.v
 src/Stm.v
 src/Step.v
-src/Seq.v
 src/Path.v
+src/Seq.v

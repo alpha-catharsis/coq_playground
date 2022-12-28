@@ -26,6 +26,7 @@ Proof.
     apply tprf.
 Qed.
 
+From STM Require Import Sem.
 Section Example.
 
   Definition sem_step_decidable (s1 : Sem) (s2 : Sem) :
